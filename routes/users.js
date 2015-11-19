@@ -6,20 +6,29 @@ userRouter.route('/login')
 	.get(function(req, res) {
 		res.render('login', {message: req.flash('loginMessage')})
 	})
-	.post(function(req, res) {
-		// create a session with passport
-	})
+	.post(passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}))
 
 userRouter.route('/signup')
 	.get(function(req, res) {
 		res.render('signup', {message: req.flash('signupMessage')})
 	})
-	.post(function(req, res) {
-		// create an account with passport
-	})
+	.post(passport.authenticate('local-signup', {
+		successRedirect: '/profile',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}))
 
 userRouter.get('/profile', isLoggedIn, function(req, res) {
-	// render user profile when signed in
+	res.render('profile', {user: req.user})
+})
+
+userRouter.get('/logout', function(req, res) {
+	req.logout(),
+	res.redirect('/')
 })
 
 function isLoggedIn(req, res, next) {

@@ -10,7 +10,8 @@ var
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	passport = require('passport'),
-	userRoutes = require('./routes/users.js')
+	userRoutes = require('./routes/users.js'),
+	passportConfig = require('./config/passport.js')
 
 // environment port
 var port = process.env.PORT || 3000
@@ -30,6 +31,8 @@ app.use(bodyParser.json())
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+
+// passport middleware
 
 //root route
 app.get('/', function(req,res){
