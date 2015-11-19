@@ -26,6 +26,12 @@ userRouter.get('/profile', isLoggedIn, function(req, res) {
 	res.render('profile', {user: req.user})
 })
 
+userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+userRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
+	successRedirect: '/profile',
+	failureRedirect: '/'
+}))
+
 userRouter.get('/logout', function(req, res) {
 	req.logout(),
 	res.redirect('/')

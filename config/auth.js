@@ -1,8 +1,8 @@
 module.exports = {
 	'facebookAuth': {
-		'clientId': '',
-		'clientSecret': '',
-		'callbackURL': 'http://localhost:3000/auth/facebook/callback',
+		'clientID': FACEBOOK_CLIENT_ID,
+		'clientSecret': FACEBOOK_CLIENT_SECRET,
+		'callbackURL': FACEBOOK_CALLBACK_URL,
 		'profileFields': ['emails', 'displayName']
 	}
 }
