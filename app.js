@@ -33,6 +33,9 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
 // passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 
 //root route
 app.get('/', function(req,res){
