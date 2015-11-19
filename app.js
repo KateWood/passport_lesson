@@ -37,6 +37,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
+app.use(session({
+	secret: 'boomchakalaka',
+	cookie: {_expires: 60000000}
+}))
+
 //root route
 app.get('/', function(req,res){
 	res.render('index')
